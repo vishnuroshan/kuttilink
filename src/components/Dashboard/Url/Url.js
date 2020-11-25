@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, Typography, Link, CardContent, ListItem, Accordion, AccordionDetails, AccordionSummary } from "@material-ui/core";
-import { ExpandMore, ExpandLess } from '@material-ui/icons'
+import { ExpandMore } from '@material-ui/icons'
 // import useClipboard from "react-use-clipboard";
 
 const useStyles = makeStyles((theme) => ({
@@ -49,7 +49,7 @@ function UrlComponent(props) {
                     href={`${process.env.REACT_APP_API_URL}${props.uniqueKey}`}
                     className={classes.heading}>{`${process.env.REACT_APP_API_URL}${props.uniqueKey}`}
                 </Link>
-                <Typography className={classes.secondaryHeading}>{props.url}</Typography>
+                <Typography variant="caption" className={classes.secondaryHeading}>{props.url}</Typography>
             </AccordionSummary>
             <AccordionDetails>
                 clicks: {props.clicks}
