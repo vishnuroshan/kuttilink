@@ -14,7 +14,7 @@ import LockOpenIcon from '@material-ui/icons/LockOpen';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { Route, NavLink, Switch, Redirect } from 'react-router-dom';
+import { Route, NavLink, Switch, Redirect, Rou, withRouter } from 'react-router-dom';
 import ProtectedRoute from './ProtectedRoutes';
 
 // redux
@@ -48,10 +48,7 @@ const useStyles = makeStyles((theme) => ({
 function Layout(props) {
 
     useEffect(() => {
-        console.log('layout props::> ', props)
-        if (props.auth) {
-            props.setUrls();
-        }
+        console.log('layout props::> ', props);
     })
 
     const classes = useStyles();
@@ -150,7 +147,9 @@ function Layout(props) {
     };
 
     const logout = () => {
-        props.logout()
+        console.log('logout::> ', props);
+        props.logout();
+        props.history.push('/home')
     }
 
     return (
@@ -212,11 +211,8 @@ function Layout(props) {
                     <Route path='/login' exact render={(props) => <Login {...props} />} />
                     <Route path='/signup' exact render={(props) => <Signup {...props} />} />
                     <ProtectedRoute path='/dashboard' component={UrlDashboard} />
-                    {/* <ProtectedRoute path='/account' component={}/>  */}
-
                     <Redirect path='/' to='/home' />
                 </Switch>
-                {/* <ShortenUrl /> */}
             </Container>
         </div>
     );
@@ -230,9 +226,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        setUrls: () => dispatch(userActionCreators.storeUrls()),
         logout: () => dispatch(userActionCreators.signout())
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Layout);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Layout));

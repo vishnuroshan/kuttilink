@@ -10,8 +10,6 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import API from '../../apis/url-api';
-import ck from '../../utils/cookies';
-
 import { connect } from 'react-redux';
 import * as userActionCreaters from '../../store/actions';
 
@@ -45,11 +43,11 @@ function Login(props) {
     const loginHandler = (event) => {
         event.preventDefault();
         API.login(email, password).then((response) => {
-            console.log('response:::> ', response);
+            console.log('login response:::> ', response);
             // ck.SetToken = response.token;
             props.login(response.token, response.user);
             // props.setUser(response.user);
-            props.history.push('/home');
+            props.history.push('/dashboard');
         });
     };
 

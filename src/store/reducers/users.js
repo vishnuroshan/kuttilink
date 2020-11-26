@@ -1,12 +1,13 @@
 import * as actionType from '../actions/actionTypes';
 import ck from '../../utils/cookies';
-const initialState = {
+
+const initialState = () => Object.create({
     auth: ck.getToken ? true : false,
     urls: [],
     user: {}
-}
+})
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = initialState(), action) => {
     switch (action.type) {
         case actionType.SET_AUTH: {
             ck.SetToken = action.token;
@@ -14,10 +15,7 @@ const reducer = (state = initialState, action) => {
         }
         case actionType.SIGNOUT: {
             ck.removeToken();
-            return initialState;
-        }
-        case actionType.SET_URL_ARRAY: {
-            return { ...state, urls: action.urls }
+            return initialState();
         }
         default: {
             return state;

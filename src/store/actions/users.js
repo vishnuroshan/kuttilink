@@ -1,5 +1,5 @@
-import { SET_AUTH, SET_URL_ARRAY, SIGNOUT, } from './actionTypes';
-import API from '../../apis/url-api';
+import { SET_AUTH, SIGNOUT, } from './actionTypes';
+
 export const setAuth = (token, user) => {
     return {
         type: SET_AUTH,
@@ -14,18 +14,18 @@ export const signout = () => {
     }
 }
 
-const setUrls = (urls) => {
-    return {
-        type: SET_URL_ARRAY,
-        urls
-    }
-}
+// const setUrls = (urls) => {
+//     return {
+//         type: SET_URL_ARRAY,
+//         urls
+//     }
+// }
 
-export const storeUrls = () => {
-    return dispatch => {
-        API.getUrls().then((urlData) => {
-            console.log(urlData);
-            return dispatch(setUrls(urlData.data))
-        });
-    }
-}
+// export const storeUrls = () => {
+//     return dispatch => {
+//         API.getUrls().then((urlData) => {
+//             console.log(urlData);
+//             return dispatch(setUrls(urlData.data))
+//         });
+//     }
+// }
