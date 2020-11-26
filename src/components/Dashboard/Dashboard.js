@@ -9,35 +9,52 @@ class Dashboard extends Component {
 
     state = {
         searchVal: '',
-        array: [...this.props.urls]
-    }
-    componentDidMount() {
-        console.log(this.state)
-        this.props.setUrls();
+        urlArray: [...this.props.urls]
     }
 
-    search = (searchVal) => {
-        console.log(searchVal)
+    shouldComponentUpdate(_nextProps, nextState) {
+        console.log('[Dashboard] shouldComponentUpdate: ', nextState.urlArray.length !== this.state.urlArray.length);
+        return nextState.urlArray.length !== this.state.urlArray.length
     }
+    componentDidMount() {
+        if (!this.state.urlArray) {
+            console.log('setting urls to props');
+            this.props.setUrls();
+        }
+        if (!this.state.urlArray.length > 0) {
+            console.log('setting props.urls to state');
+            this.setState({ urlArray: this.props.urls });
+        }
+    }
+
+
+    search = () => {
+        const filteredList = this.state.urlArray.filter((elem) => elem.url.toLowerCase().match(this.state.searchVal.trim()));
+        console.log(filteredList);
+        this.setState({ urlArray: filteredList });
+    }
+
     render() {
         return (
+
             <div style={{ marginTop: "12px" }}>
                 <Grid container spacing={3}>
                     <Grid item xs={12}>
                         <SearchBar
                             value={this.state.searchVal}
-                            onChange={(newValue) => this.setState({ value: newValue })}
-                            onRequestSearch={() => this.search(this.state.searchVal)}
+                            onChange={(newValue) => this.setState({ searchVal: newValue })}
+                            onRequestSearch={() => this.search()}
                         />
                     </Grid>
-                    <Grid item xs={12}>
-                        {this.state.array.map((url) => {
-                            return <Url
-                                key={url._id}
-                                {...url}
-                            />
-                        })}
-                    </Grid>
+
+                    {this.state.urlArray.map((url) => {
+                        return <Grid
+                            item xs={12}
+                            key={url._id}>
+                            <Url {...url} />
+                        </Grid>
+                    })}
+
                 </Grid>
             </div>
         );

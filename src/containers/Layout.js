@@ -8,7 +8,7 @@ import {
     ListItemIcon, ListItemText
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-import { AccountCircle, AccountBox, Dashboard, Person } from '@material-ui/icons';
+import { AccountCircle, Dashboard } from '@material-ui/icons';
 import LinkIcon from '@material-ui/icons/Link';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
@@ -48,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
 function Layout(props) {
 
     useEffect(() => {
+        console.log('layout props::> ', props)
         if (props.auth) {
             props.setUrls();
         }
@@ -85,19 +86,6 @@ function Layout(props) {
                                 exact
                                 activeClassName="my-active">
                                 URL-shortener</NavLink>
-                        </ListItemText>
-                    </ListItem>
-
-                    <ListItem>
-                        <ListItemIcon>
-                            <AccountBox />
-                        </ListItemIcon>
-                        <ListItemText>
-                            <NavLink
-                                to="/account/"
-                                exact
-                                activeClassName="my-active">
-                                Account</NavLink>
                         </ListItemText>
                     </ListItem>
 
@@ -152,10 +140,6 @@ function Layout(props) {
             </div>
     };
     const open = Boolean(anchorEl);
-
-    // const handleChange = (event) => {
-    //     setAuth(event.target.checked);
-    // };
 
     const handleMenu = (event) => {
         console.log(event.currentTarget)

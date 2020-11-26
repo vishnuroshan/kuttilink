@@ -17,7 +17,7 @@ const reducer = (state = initialState, action) => {
             return initialState;
         }
         case actionType.SET_URL_ARRAY: {
-            return { ...state, urls: action.urls, user: action.user }
+            return { ...state, urls: action.urls }
         }
         default: {
             return state;

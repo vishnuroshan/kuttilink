@@ -14,11 +14,10 @@ export const signout = () => {
     }
 }
 
-const setUrls = (urls, user) => {
+const setUrls = (urls) => {
     return {
         type: SET_URL_ARRAY,
-        urls,
-        user
+        urls
     }
 }
 
@@ -26,7 +25,7 @@ export const storeUrls = () => {
     return dispatch => {
         API.getUrls().then((urlData) => {
             console.log(urlData);
-            return dispatch(setUrls(urlData.data, urlData.user))
+            return dispatch(setUrls(urlData.data))
         });
     }
 }
