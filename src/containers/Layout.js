@@ -55,7 +55,6 @@ function Layout(props) {
     })
 
     const classes = useStyles();
-    // const [auth, setAuth] = React.useState(false);
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [isDrawerOpen, setDrawerStatus] = React.useState(false);
 
@@ -150,6 +149,10 @@ function Layout(props) {
         setAnchorEl(null);
     };
 
+    const logout = () => {
+        props.logout()
+    }
+
     return (
         <div className={classes.root}>
             <AppBar position="static">
@@ -193,6 +196,7 @@ function Layout(props) {
                             >
                                 <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
                                 <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+                                <MenuItem onClick={logout}>Logout</MenuItem>
                             </Menu>
                         </div>
                     )}
@@ -226,7 +230,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        setUrls: () => dispatch(userActionCreators.storeUrls())
+        setUrls: () => dispatch(userActionCreators.storeUrls()),
+        logout: () => dispatch(userActionCreators.signout())
     }
 }
 

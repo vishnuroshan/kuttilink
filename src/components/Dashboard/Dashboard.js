@@ -27,7 +27,6 @@ class Dashboard extends Component {
         }
     }
 
-
     search = () => {
         const filteredList = this.state.urlArray.filter((elem) => elem.url.toLowerCase().match(this.state.searchVal.trim()));
         console.log(filteredList);
@@ -36,7 +35,6 @@ class Dashboard extends Component {
 
     render() {
         return (
-
             <div style={{ marginTop: "12px" }}>
                 <Grid container spacing={3}>
                     <Grid item xs={12}>
@@ -46,7 +44,6 @@ class Dashboard extends Component {
                             onRequestSearch={() => this.search()}
                         />
                     </Grid>
-
                     {this.state.urlArray.map((url) => {
                         return <Grid
                             item xs={12}
