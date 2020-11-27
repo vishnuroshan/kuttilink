@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import Url from './Url/Url';
-import { Grid, Typography, CircularProgress } from '@material-ui/core';
+import { Grid, CircularProgress } from '@material-ui/core';
 import SearchBar from "material-ui-search-bar";
 import API from '../../apis/url-api';
 
 class Dashboard extends Component {
     constructor(props) {
         super(props);
-        console.log('dashboard constructor:> ', this.props.urls);
         this.state = {
             searchVal: '',
             urlArray: [],
@@ -15,17 +14,10 @@ class Dashboard extends Component {
         }
     }
 
-    // shouldComponentUpdate(_nextProps, nextState) {
-    //     console.log('[Dashboard] shouldComponentUpdate: ', nextState.urlArray.length !== this.state.urlArray.length);
-    //     return nextState.urlArray.length !== this.state.urlArray.length
-    // }
-
     componentDidMount() {
-        // if (!this.state.urlArray.length > 0) {
         API.getUrls().then((result) => {
             this.setState({ urlArray: result.data, filteredArray: result.data });
         });
-        // }
     }
 
     search = (searchVal) => {
@@ -33,7 +25,6 @@ class Dashboard extends Component {
         this.setState({ filteredArray: [...this.state.urlArray] });
         if (searchVal.length > 2) {
             const filteredList = this.state.filteredArray.filter((elem) => elem.url.toLowerCase().match(searchVal.trim()));
-
             this.setState({ filteredArray: filteredList });
         }
 

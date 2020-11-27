@@ -26,6 +26,7 @@ import ShortenUrl from '../components/ShortenUrl/ShortenUrl';
 import Login from '../components/Login/Login';
 import Signup from '../components/Signup/Signup';
 import UrlDashboard from '../components/Dashboard/Dashboard';
+import AccountInfo from '../components/Account/Accountinfo'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -146,6 +147,10 @@ function Layout(props) {
         setAnchorEl(null);
     };
 
+    const goToAccount = () => {
+        props.history.push('/account');
+    }
+
     const logout = () => {
         console.log('logout::> ', props);
         props.logout();
@@ -193,8 +198,8 @@ function Layout(props) {
                                 open={open}
                                 onClose={handleMenuClose}
                             >
-                                <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-                                <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+                                {/* <MenuItem onClick={handleMenuClose}>Profile</MenuItem> */}
+                                <MenuItem onClick={goToAccount}>My account</MenuItem>
                                 <MenuItem onClick={logout}>Logout</MenuItem>
                             </Menu>
                         </div>
@@ -211,6 +216,7 @@ function Layout(props) {
                     <Route path='/login' exact render={(props) => <Login {...props} />} />
                     <Route path='/signup' exact render={(props) => <Signup {...props} />} />
                     <ProtectedRoute path='/dashboard' component={UrlDashboard} />
+                    <ProtectedRoute path='/account' component={AccountInfo} />
                     <Redirect path='/' to='/home' />
                 </Switch>
             </Container>

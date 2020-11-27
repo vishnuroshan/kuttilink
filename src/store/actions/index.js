@@ -1,4 +1,5 @@
 export {
     setAuth,
-    signout
+    signout,
+    setUser
 } from './users';

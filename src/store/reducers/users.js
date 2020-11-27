@@ -17,6 +17,9 @@ const reducer = (state = initialState(), action) => {
             ck.removeToken();
             return initialState();
         }
+        case actionType.SET_USER: {
+            return { ...state, user: action.user };
+        }
         default: {
             return state;
         }

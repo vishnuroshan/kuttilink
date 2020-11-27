@@ -33,4 +33,11 @@ API.signup = (firstname, lastname, email, password) =>
         return err;
     });
 
+API.getUser = () => httpClient.get('user/getUser').then((response) => {
+    return response.data.user;
+}, err => {
+    console.log(err);
+    return err;
+});
+
 export default API;

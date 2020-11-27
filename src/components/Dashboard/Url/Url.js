@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Link, Accordion, AccordionDetails, AccordionSummary } from "@material-ui/core";
-import { ExpandMore } from '@material-ui/icons'
-// import useClipboard from "react-use-clipboard";
+import { ExpandMore } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -42,8 +41,7 @@ function UrlComponent(props) {
             <AccordionSummary
                 expandIcon={<ExpandMore />}
                 aria-controls="panel1bh-content"
-                id="panel1bh-header"
-            >
+                id="panel1bh-header">
                 <Link
                     href={`${process.env.REACT_APP_API_URL}${props.uniqueKey}`}
                     className={classes.heading}>{`${process.env.REACT_APP_API_URL}${props.uniqueKey}`}

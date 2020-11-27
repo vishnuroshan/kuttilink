@@ -1,4 +1,4 @@
-import { SET_AUTH, SIGNOUT, } from './actionTypes';
+import { SET_AUTH, SIGNOUT, SET_USER } from './actionTypes';
 
 export const setAuth = (token, user) => {
     return {
@@ -14,18 +14,9 @@ export const signout = () => {
     }
 }
 
-// const setUrls = (urls) => {
-//     return {
-//         type: SET_URL_ARRAY,
-//         urls
-//     }
-// }
-
-// export const storeUrls = () => {
-//     return dispatch => {
-//         API.getUrls().then((urlData) => {
-//             console.log(urlData);
-//             return dispatch(setUrls(urlData.data))
-//         });
-//     }
-// }
+export const setUser = (user) => {
+    return {
+        type: SET_USER,
+        user
+    }
+}
